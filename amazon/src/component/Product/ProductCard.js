@@ -14,7 +14,7 @@ export default function ProductCard(props) {
     <Link to={`productdetail/${_id}`}>
       <Card
         hoverable
-        style={{ width: 240 }}
+        style={{ width: 240,marginTop:10 }}
         cover={<img alt={image} src='https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2022/January/ValentinesDay/Fuji_Vday_dash_1X._SY304_CB646464301_.jpg' />}
       >
         <Meta style={{ height: '50px' }} title={name} description={description} />

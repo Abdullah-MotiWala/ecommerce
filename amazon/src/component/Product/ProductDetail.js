@@ -17,21 +17,6 @@ export default function ProductDetail(props) {
         <div>Product not found</div>
       ) : (
         <>
-          {/* <Row gutter={16}>
-          <Col className="gutter-row" span={{ lg: 12, sm: 12}}>
-            <Card
-              hoverable
-              cover={<img alt={tarProduct.description} src='https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/September/DashboardCards/Fuji_Dash_Toys_1X._SY304_CB639759658_.jpg' />}
-            />
-          </Col>
-          <Col className="gutter-row" span={{ lg: 12,md:12, sm: 12 }}>
-            <Card title={tarProduct.name} extra={tarProduct.brand}>
-              <p>{tarProduct.description}</p>
-              <p>({tarProduct.rating}) {tarProduct.numReviews} reviews</p>
-              <p>{tarProduct.category}</p>
-            </Card>
-          </Col>
-        </Row> */}
           {/* product image */}
 
           <Row justify="center">
@@ -43,7 +28,7 @@ export default function ProductDetail(props) {
               />
             </Col>
 
-            {/* product detail */}
+            {/* product detail  */}
             <Col span={12} style={{ textAlign: "center" }}>
               <Row className="proDetRow" align="center" justify="space-around">
                 <Col span={{ md: 12, sm: 24 }} className="proDetCol">
@@ -58,16 +43,16 @@ export default function ProductDetail(props) {
                   </Card>
                 </Col>
 
-                {/* add to cart */}
+                {/* add to cart  */}
                 <Col
                   span={{ md: 12, sm: 24 }}
                   style={{
                     minWidth: 300,
-                    height:150,
+                    height: 150,
                     border: "1px black solid",
                     borderRadius: 5,
-                    padding:10,
-                    marginTop:5
+                    padding: 10,
+                    marginTop: 5
                   }}
                 >
                   <Row justify="space-between">
@@ -91,7 +76,7 @@ export default function ProductDetail(props) {
                         backgroundColor: "#ff9900",
                         border: "none",
                         fontWeight: "bold",
-                        cursor:'pointer',
+                        cursor: "pointer"
                       }}
                     >
                       Add to Cart
