@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Row, Col, Spin, Alert, Divider, InputNumber, Modal } from "antd";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  Row,
+  Col,
+  Spin,
+  Alert,
+  Divider,
+  InputNumber,
+  Modal,
+  Button
+} from "antd";
 import { Card } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { productDetails } from "../../redux/actions/porductActions";
+import Navbar from "../Home/Navbar";
+import Footer from "../Home/Footer";
 
 export default function ProductDetail(props) {
+  const navigate = useNavigate();
   let { id } = useParams();
   const dispatch = useDispatch();
-  const [cartQty, setCartQty] = useState();
+  const [cartQty, setCartQty] = useState(1);
 
   useEffect(() => {
     dispatch(productDetails(id));
@@ -24,11 +36,17 @@ export default function ProductDetail(props) {
       content: "We have no more of this item, please choose another one"
     });
   }
+  //chnage handle for cart counter
   const changeHandler = (value) => {
     value <= product.countInStock ? setCartQty(value) : warning();
   };
+  //addtocart handle
+  const addToCardHandler = () => {
+    navigate(`/cart/${id}?qty=${cartQty}`);
+  };
   return (
-    <div>
+    <div className="proCont">
+      <Navbar />
       {error ? (
         <Alert message={error} type="error" showIcon />
       ) : loading ? (
@@ -106,7 +124,9 @@ export default function ProductDetail(props) {
                     </Col>
                   </Row>
                   <Row>
-                    <button
+                    <Button
+                      type="default"
+                      disabled={product.countInStock === 0}
                       style={{
                         width: "93%",
                         backgroundColor: "#ff9900",
@@ -114,12 +134,13 @@ export default function ProductDetail(props) {
                         fontWeight: "bold",
                         cursor: "pointer",
                         position: "absolute",
-                        bottom: "10px",
+                        bottom: "5px",
                         borderRadius: "2px"
                       }}
+                      onClick={() => addToCardHandler()}
                     >
                       Add to Cart
-                    </button>
+                    </Button>
                   </Row>
                 </Col>
               </Row>
@@ -127,6 +148,7 @@ export default function ProductDetail(props) {
           </Row>
         </>
       )}
+      <Footer />
     </div>
   );
 }

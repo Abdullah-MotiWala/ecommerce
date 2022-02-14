@@ -30,7 +30,7 @@ export const listProducts = () => async (dispatch) => {
 //getting target product using id and showing on product detail page
 export const productDetails = (id) => async (dispatch) => {
   dispatch({ type: PRODUCT_DETAIL_REQUEST, payload: id });
-  const api = fetch(`/api/products/products/${id}`);
+  const api = fetch(`/api/products/product/${id}`);
   const apiResponse = await api.then((res) => res.json());
   // const { data } = Axios.get(`/api/products/products/${id}`);
   !apiResponse.message

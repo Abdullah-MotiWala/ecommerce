@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -64,8 +64,8 @@ ant-card-body {
   align-items: center;
 }
 .proImage {
-  width: 100%;
-  height: 96vh;
+  width: 85%;
+  height: 85%;
 }
 .proDetCol .ant-card {
   line-height: 1;
@@ -74,8 +74,15 @@ ant-card-body {
 .proDetRow{
   margin-right: auto;
 }
+.proCont{
+  height: 100vh;
+}
 @media screen and (max-width: 765px) {
   .proDetCol .ant-card {
     right: 80px;
+  }
+  .proImage {
+    width: 100%;
+    /* height: 100%; */
   }
 }
