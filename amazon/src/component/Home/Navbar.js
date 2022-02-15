@@ -4,7 +4,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  let cartItems = JSON.parse(localStorage.getItem("cartItems")).length;
+
+  let cartItems = JSON.parse(localStorage.getItem("cartItems"))?.length;
   return (
     <header className="navBar">
       <div>

@@ -49,7 +49,9 @@ a {
   color: #fff;
   padding: 0.5rem;
   text-align: center;
-  position: sticky;
+  position: fixed;
+  display: block;
+  width: 100vw;
   bottom: 0;
 }
 
@@ -77,6 +79,13 @@ ant-card-body {
 .proCont{
   height: 100vh;
 }
+.cartDet{
+  border: 1px black solid;
+}
+.cartCheckout{
+  position: sticky;
+  top: 85px
+}
 @media screen and (max-width: 765px) {
   .proDetCol .ant-card {
     right: 80px;
@@ -84,5 +93,17 @@ ant-card-body {
   .proImage {
     width: 100%;
     /* height: 100%; */
+  }
+  .cartCheckout{
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+  }
+  .cartDet{
+    border: 0;
+
+  }
+  .cartRow{
+    background-color: #ff9900;
   }
 }
