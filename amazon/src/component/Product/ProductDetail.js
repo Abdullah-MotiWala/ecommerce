@@ -88,7 +88,8 @@ export default function ProductDetail(props) {
                     borderRadius: 5,
                     padding: 10,
                     marginTop: 5,
-                    position: "relative"
+                    position: "relative",
+                    marginBottom: "50px"
                   }}
                 >
                   <Row justify="space-between">

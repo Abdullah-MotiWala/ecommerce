@@ -3,7 +3,7 @@ import { Avatar, Col, Row, Image, Button, Divider, Modal } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { addToCart } from "../../redux/actions/cartActions";
+import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
 import Navbar from "../Home/Navbar";
 import Footer from "../Home/Footer";
 
@@ -29,7 +29,9 @@ export default function CartDetails() {
   const changeHandler = (value, stock, e) => {};
 
   //remove cart item
-  const removeFromCart = (id) => {};
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   const checkOutHandler = () => {
     //navigate to sign in page
@@ -106,8 +108,9 @@ export default function CartDetails() {
                         />
                         <span>${prod.price}</span>
                         <DeleteTwoTone
+                          onClick={() => removeFromCartHandler(prod.product)}
                           twoToneColor="#e30000"
-                          style={{ fontSize: 50 }}
+                          style={{ fontSize: 50, cursor: "pointer" }}
                         />
                       </Row>
                     </Col>
@@ -135,10 +138,11 @@ export default function CartDetails() {
           >
             <Row justify="space-between" align="center">
               <span style={{ fontWeight: "bold" }}>
-                Total Items : {cartItems.reduce((a, c) => Number(a + c.qty), 0)}
+                Total Items :{" "}
+                {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)}
                 <br />
                 Sub Total : $
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                {cartItems.reduce((a, c) => +a + c.price * c.qty, 0)}
               </span>
             </Row>
             <Row>

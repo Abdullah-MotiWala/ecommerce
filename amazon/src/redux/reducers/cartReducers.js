@@ -7,7 +7,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       const item = action.payload;
       const existItem = state.cartItems.find((x) => x.product === item.product);
       //checking if item already add so update
-      if (existItem) {
+      if (existItem && item.qty !== 0) {
         return {
           ...state,
           cartItems: state.cartItems.map((x) =>
@@ -16,16 +16,19 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         };
       }
       //if item not avaiable ten add in cart items
-      else {
+      else if (item.qty !== 0) {
         return {
           ...state,
           cartItems: [...state.cartItems, item]
         };
       }
-
+      break;
     //remove item from cart
     case CART_REMOVE_ITEM:
-      return {};
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((x) => x.product !== action.payload)
+      };
     default:
       return state;
   }
