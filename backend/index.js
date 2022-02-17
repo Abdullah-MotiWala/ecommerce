@@ -4,11 +4,27 @@ import cors from "cors";
 import productRouter from "./routes/products.js";
 import userRouter from "./routes/userRoutes.js";
 import connectingMongoose from "./db.js";
+import dotenv from "dotenv";
+import path from "path";
+
+
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// dotenv.config({ path: __dirname, '../.env' });
+// dotenv.config({path: path.join(__dirname, '../', '.env')});
+// // dotenv.config({path: '../.env'})
+// console.log(dotenv.config({ path: "../.env" }));
+// dotenv.config({ path: path.resolve("../.env") });
+// dotenv.config({path:'../.env'})
+// console.log(dotenv.config({path:'../.env'}));
+const dotCon = dotenv.config({path: '.env'});
 
 const port = process.env.PORT || 5000;
+
 //connectingMongoose
 connectingMongoose();
 
