@@ -73,18 +73,28 @@ ant-card-body {
   line-height: 1;
   /* right: 80px; */
 }
-.proDetRow{
+.proDetRow {
   margin-right: auto;
 }
-.proCont{
+.proCont {
   height: 100vh;
 }
-.cartDet{
+.cartDet {
   border: 1px black solid;
 }
-.cartCheckout{
+.cartCheckout {
   position: sticky;
-  top: 85px
+  top: 85px;
+}
+.signInContainer {
+  width: 40vw;
+  background-color: #ff9900;
+  margin: auto;
+  height: 40vh;
+  padding: 2em;
+  border-radius: 10px;
+  position: relative;
+  top: 10vh;
 }
 @media screen and (max-width: 765px) {
   .proDetCol .ant-card {
@@ -94,16 +104,25 @@ ant-card-body {
     width: 100%;
     /* height: 100%; */
   }
-  .cartCheckout{
+  .cartCheckout {
     position: sticky;
     bottom: 0;
     z-index: 5;
   }
-  .cartDet{
+  .cartDet {
     border: 0;
-
   }
-  .cartRow{
+  .cartRow {
     background-color: #ff9900;
+  }
+  .signInContainer{
+        background-color: #ff9900;
+        padding: 2em;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        padding: auto;
+        border-radius: 0;
+        top: 0;
   }
 }

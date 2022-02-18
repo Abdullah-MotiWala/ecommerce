@@ -1,7 +1,15 @@
 #FRONT END
 BUG : 1
 on delete cart, cart again add product form url;
+TODO : 2
+star component does not showing stars correctly;
+TODO : 3
+using image of product direct from database;
+TODO : 4
+sign in logo color change if user is signed in
+
+
 
 #BACKEND
 TODO : 1
-secure sign in method using JWT:)
+secure sign in method using JWT and hashing

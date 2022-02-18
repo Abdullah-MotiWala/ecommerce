@@ -6,20 +6,25 @@ import ErrorB from "./component/ErrorBoundary";
 import CartDetails from "./component/Product/CartDetails";
 import Navbar from "./component/Home/Navbar";
 import Footer from "./component/Home/Footer";
+import SignIn from "./component/Auth/SignIn";
 
 function App() {
   return (
-    // <ErrorB>
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} exact></Route>
-          <Route path="/productdetail/:id" element={<ProductDetail />}></Route>
-          <Route path="/cart/:id" element={<CartDetails />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </>
-    // </ErrorB>
+    <ErrorB>
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} exact></Route>
+            <Route
+              path="/productdetail/:id"
+              element={<ProductDetail />}
+            ></Route>
+            <Route path="/cart/:id" element={<CartDetails />}></Route>
+            <Route path="/signin" element={<SignIn />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </>
+    </ErrorB>
   );
 }
 
