@@ -96,6 +96,9 @@ ant-card-body {
   position: relative;
   top: 10vh;
 }
+.cartRow input{
+  border:none
+}
 @media screen and (max-width: 765px) {
   .proDetCol .ant-card {
     right: 80px;
@@ -114,6 +117,11 @@ ant-card-body {
   }
   .cartRow {
     background-color: #ff9900;
+    padding: 0.5rem;
+  }
+  .cartRow input {
+    width: 50%;
+    width: 21%;
   }
   .signInContainer{
         background-color: #ff9900;

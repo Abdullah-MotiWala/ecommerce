@@ -27,7 +27,6 @@ export default function ProductDetail(props) {
   }, [dispatch, id]);
   const productDet = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDet;
-  console.log("running");
 
   //popup function for above countinstock item selection
   function warning() {

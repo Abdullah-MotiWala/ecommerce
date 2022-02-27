@@ -8,10 +8,10 @@ import Navbar from "../Home/Navbar";
 import Footer from "../Home/Footer";
 
 export default function CartDetails() {
-  // const [cartQty, setCartQty] = useState(0);
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
+  
   //getting id and qty from URL
   let { id } = useParams();
   let qty = searchParams.get("qty");
