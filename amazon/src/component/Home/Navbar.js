@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   let cartItems = JSON.parse(localStorage.getItem("cartItems"))?.length;
-  const userSignIn = useSelector((state) => state.userSignIn);
-  const { userInfo } = userSignIn;
+  const { userInfo } = useSelector((state) => state.userAuth);
+  // const { userInfo } = userSignIn;
 
   //if user info found so implemnt popover
 
@@ -25,14 +25,14 @@ export default function Navbar() {
             style={{ backgroundColor: "#fff", verticalAlign: "middle" }}
           >
             <span style={{ color: "#ff9900" }}>
-              {userInfo.name.charAt(0).toUpperCase()}
+              {userInfo?.name?.charAt(0).toUpperCase()}
             </span>
           </Avatar>
         </Popover>
       );
     }
     return (
-      <Link to="/signin">
+      <Link to="/signup">
         <Avatar
           size={40}
           style={{ backgroundColor: "#fff", verticalAlign: "middle" }}

@@ -1,9 +1,9 @@
-import express, { Router } from "express";
+import { Router } from "express";
 import data from "../data.js";
 import User from "../models/userModel.js";
 import expressAsyncHandle from "express-async-handler";
 import { generateToken } from "../utils.js";
-const app = express();
+// const app = express();
 
 const router = Router();
 
@@ -46,14 +46,14 @@ router.post(
       password: req.body.password
     });
     const createdUser = await user.save();
-    
     res.send({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(createdUser)
+      _id: createdUser._id,
+      name: createdUser.name,
+      email: createdUser.email,
+      isAdmin: createdUser.isAdmin,
+      token: generateToken(user)
     });
+    return;
   })
 );
 export default router;

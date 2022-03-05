@@ -1,33 +1,29 @@
 import { Button, Checkbox, Form, Input } from "antd";
-import React, { createRef, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signin } from "../../redux/actions/authActions";
 import Footer from "../Home/Footer";
 import Navbar from "../Home/Navbar";
-import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Modal } from "antd";
 import { Spin } from "antd";
 
 export default function SignIn(props) {
-  //   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const passRef = useRef(null);
   const nameRef = useRef(null);
-  //   let qty = searchParams.get("qty");
 
   const redirect = props?.location?.search
     ? props.location.search.split("=")[1]
     : "/";
 
   //if user is logged in
-  const userSignIn = useSelector((state) => state.userSignIn);
+  const userSignIn = useSelector((state) => state.userAuth);
   const { userInfo, loading, error } = userSignIn;
 
   //error modal
   function errorModal() {
-    console.log("errors is here");
     Modal.error({
       title: "Credentials are incorrect",
       content: "We can not find your account. Please try again."
