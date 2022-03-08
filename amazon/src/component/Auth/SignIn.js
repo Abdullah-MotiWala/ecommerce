@@ -7,6 +7,7 @@ import Footer from "../Home/Footer";
 import Navbar from "../Home/Navbar";
 import { Modal } from "antd";
 import { Spin } from "antd";
+import { useLocation } from "react-router-dom";
 
 export default function SignIn(props) {
   const dispatch = useDispatch();
@@ -14,9 +15,13 @@ export default function SignIn(props) {
   const passRef = useRef(null);
   const nameRef = useRef(null);
 
-  const redirect = props?.location?.search
-    ? props.location.search.split("=")[1]
-    : "/";
+  // const redirect = props?.location?.search
+  //   ? props.location.search.split("=")[1]
+  //   : "/";
+
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get('redirect');
+  const redirect = redirectInUrl ? redirectInUrl : '/';
 
   //if user is logged in
   const userSignIn = useSelector((state) => state.userAuth);

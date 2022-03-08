@@ -1,16 +1,18 @@
 import { DeleteTwoTone } from "@ant-design/icons";
-import { Avatar, Col, Row, Image, Button, Divider, Modal } from "antd";
+import { Avatar, Col, Row, Image, Button, Divider, Modal} from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
 import Navbar from "../Home/Navbar";
 import Footer from "../Home/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function CartDetails() {
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate()
   
   //getting id and qty from URL
   let { id } = useParams();
@@ -35,6 +37,7 @@ export default function CartDetails() {
 
   const checkOutHandler = () => {
     //navigate to sign in page
+    navigate('/signin?redirect=/shipping');
   };
 
   useEffect(() => {
@@ -53,9 +56,8 @@ export default function CartDetails() {
           <Col md={18} sm={24} xs={24}>
             {cartItems.map((prod, ind) => {
               return (
-                <>
+                <span key={ind}>
                   <Row
-                    key={ind}
                     justify="space-around"
                     align="middle"
                     style={{ marginTop: 5 }}
@@ -116,7 +118,7 @@ export default function CartDetails() {
                     </Col>
                   </Row>
                   <Divider />
-                </>
+                </span>
               );
             })}
           </Col>
@@ -158,6 +160,7 @@ export default function CartDetails() {
                   bottom: "5px",
                   borderRadius: "2px"
                 }}
+                onClick={checkOutHandler}
               >
                 Check Out
               </Button>

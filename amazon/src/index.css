@@ -96,8 +96,15 @@ ant-card-body {
   position: relative;
   top: 10vh;
 }
-.cartRow input{
-  border:none
+.cartRow input {
+  border: none;
+}
+.shippingForm {
+  background-color: #ff9900;
+  padding: 2em;
+  color: #fff;
+  border-radius: 2em;
+  width: 80%;
 }
 @media screen and (max-width: 765px) {
   .proDetCol .ant-card {
@@ -123,14 +130,19 @@ ant-card-body {
     width: 50%;
     width: 21%;
   }
-  .signInContainer{
-        background-color: #ff9900;
-        padding: 2em;
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        padding: auto;
-        border-radius: 0;
-        top: 0;
+  .signInContainer {
+    background-color: #ff9900;
+    padding: 2em;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding: auto;
+    border-radius: 0;
+    top: 0;
+  }
+  .shippingForm {
+    width: 100%;
+    border-radius: 0;
+    padding: 0;
   }
 }

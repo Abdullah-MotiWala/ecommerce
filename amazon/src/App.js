@@ -8,6 +8,7 @@ import Navbar from "./component/Home/Navbar";
 import Footer from "./component/Home/Footer";
 import SignIn from "./component/Auth/SignIn";
 import SignUp from "./component/Auth/SignUp";
+import Shipping from "./component/Product/Shipping";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
             <Route path="/cart/:id" element={<CartDetails />}></Route>
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/shipping" element={<Shipping />}></Route>
+
           </Routes>
         </BrowserRouter>
       </>
