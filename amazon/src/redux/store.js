@@ -6,13 +6,13 @@ import {
 } from "./reducers/productReducers.js";
 import { cartReducer } from "./reducers/cartReducers.js";
 import {
-  signUpReducers,
+  // signUpReducers,
   userAuthReducer,
-  userSignInReducer
+  // userSignInReducer
 } from "./reducers/authReducers.js";
 
 const initialState = {
-  userSignIn: {
+  userAuth: {
     userInfo: JSON.parse(localStorage?.getItem("userInfo"))
   },
   addToCart: {

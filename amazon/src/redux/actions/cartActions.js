@@ -2,6 +2,7 @@ import Axios from "axios";
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  SAVE_PAYMENY_METHOD,
   SHIPPING_ADDRESS_SAVE
 } from "../constant/cartConstant";
 
@@ -38,3 +39,8 @@ export const saveShippingAddress = (address) => async (dispatch) => {
   dispatch({ type: SHIPPING_ADDRESS_SAVE, payload: address });
   localStorage.setItem("shippingAddress", JSON.stringify(address));
 };
+
+
+export const savePaymentMethod = (paymentMethod) => async (dispatch)=>{
+  dispatch({type:SAVE_PAYMENY_METHOD,payload:paymentMethod})
+}

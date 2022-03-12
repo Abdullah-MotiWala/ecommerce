@@ -4,11 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDetail from "./component/Product/ProductDetail";
 import ErrorB from "./component/ErrorBoundary";
 import CartDetails from "./component/Product/CartDetails";
-import Navbar from "./component/Home/Navbar";
-import Footer from "./component/Home/Footer";
 import SignIn from "./component/Auth/SignIn";
 import SignUp from "./component/Auth/SignUp";
 import Shipping from "./component/Product/Shipping";
+import Payment from "./component/Product/Payment";
 
 function App() {
   return (
@@ -25,6 +24,8 @@ function App() {
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/shipping" element={<Shipping />}></Route>
+            <Route path="/payment" element={<Payment />}></Route>
+
 
           </Routes>
         </BrowserRouter>
