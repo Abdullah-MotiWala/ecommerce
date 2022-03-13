@@ -1,19 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Radio, Space } from "antd";
 import { Typography } from "antd";
 import { Button } from "antd";
 import { Row } from "antd";
 import { savePaymentMethod } from "../../redux/actions/cartActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Payment() {
+  const cart = useSelector((state) => state.addToCart);
+  const { shippingAddress } = cart;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!shippingAddress?.address) {
+      navigate("/shipping");
+    }
+  }, []);
+
   const dispatch = useDispatch();
+
   const [paymentMethod, setPaymentMethod] = useState("Paypal");
+
+  // useEffect(() => {
+
+  // }, [navigate, shippingAddress]);
+  console.log(shippingAddress);
+  // useEffect(() => {
+  //   if (!shippingAddress) {
+  //     navigate("/shipping");
+  //   }
+  // }, [shippingAddress, navigate]);
+  // if (!shippingAddress) {
+  //   alert("not found");
+  //   navigate("/shipping");
+  // }
+
   const onChange = (e) => {
     setPaymentMethod(e.target.value);
   };
   const clickHandler = () => {
     dispatch(savePaymentMethod(paymentMethod));
+    navigate("/placeorder");
   };
   const { Title } = Typography;
   return (

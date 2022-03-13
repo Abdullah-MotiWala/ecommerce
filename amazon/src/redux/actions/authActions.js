@@ -3,6 +3,7 @@ import {
   USER_SIGNIN_FAILED,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCESS,
+  USER_SIGNOUT,
   USER_SIGNUP_REQUEST
 } from "../constant/authConstant";
 export const signin = (email, password) => async (dispatch) => {
@@ -10,7 +11,7 @@ export const signin = (email, password) => async (dispatch) => {
   try {
     const { data } = await Axios.post("api/users/signin", {
       email,
-      password,
+      password
     });
     dispatch({ type: USER_SIGNIN_SUCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
@@ -32,4 +33,11 @@ export const signup = (name, email, password) => async (dispatch) => {
   } catch (err) {
     dispatch({ type: USER_SIGNIN_FAILED, payload: err.message });
   }
+};
+
+export const signout = () => async (dispatch) => {
+  localStorage.removeItem("userInfo");
+  localStorage.removeItem("cartItems");
+  localStorage.removeItem("shippingAddress");
+  dispatch({ type: USER_SIGNOUT });
 };

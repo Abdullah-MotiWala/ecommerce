@@ -1,10 +1,17 @@
 import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import { Avatar, Badge, Popover } from "antd";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { signout } from "../../redux/actions/authActions";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+
+  const clickHandler = () => {
+    dispatch(signout());
+  };
   let cartItems = JSON.parse(localStorage.getItem("cartItems"))?.length;
   const { userInfo } = useSelector((state) => state.userAuth);
   // const { userInfo } = userSignIn;
@@ -17,7 +24,7 @@ export default function Navbar() {
         <Popover
           placement="bottom"
           title={"logout"}
-          content={"content"}
+          content={<Button onClick={clickHandler}>signout</Button>}
           trigger="click"
         >
           <Avatar

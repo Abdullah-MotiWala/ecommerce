@@ -7,7 +7,7 @@ import {
 import { cartReducer } from "./reducers/cartReducers.js";
 import {
   // signUpReducers,
-  userAuthReducer,
+  userAuthReducer
   // userSignInReducer
 } from "./reducers/authReducers.js";
 
@@ -18,6 +18,9 @@ const initialState = {
   addToCart: {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+    shippingAddress: localStorage.getItem("shippingAddress")
+      ? JSON.parse(localStorage.getItem("shippingAddress"))
       : []
   }
 };

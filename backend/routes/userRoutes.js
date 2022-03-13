@@ -24,10 +24,6 @@ router.post(
     const user = await User.findOne({ email: req.body.email });
     if (user) {
       res.send({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
         token: generateToken(user)
       });
       return;
@@ -47,11 +43,7 @@ router.post(
     });
     const createdUser = await user.save();
     res.send({
-      _id: createdUser._id,
-      name: createdUser.name,
-      email: createdUser.email,
-      isAdmin: createdUser.isAdmin,
-      token: generateToken(user)
+      token: generateToken(createdUser)
     });
     return;
   })

@@ -7,12 +7,10 @@ import { useNavigate } from "react-router-dom";
 export default function Shipping() {
   const navigate = useNavigate();
   const userSignedIn = useSelector((state) => state.userAuth);
-  console.log(userSignedIn);
   const { userInfo } = userSignedIn;
   useEffect(() => {
     if (!userInfo) {
       navigate("/signin?redirect=/shipping");
-      console.log(userInfo);
     }
   }, [navigate, userInfo]);
 
