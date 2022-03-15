@@ -77,11 +77,11 @@ export default function Shipping() {
           </Form.Item>
           <Form.Item label="Postal Code">
             <Input
-              name="postalcode"
+              name="postalCode"
               onChange={(e) => {
                 changeHandler(e);
               }}
-              value={info.postalcode}
+              value={info.postalCode}
             />
           </Form.Item>
           <Form.Item label="City">

@@ -18,16 +18,16 @@ export const generateToken = (user) => {
 export const authorizerMW = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
-    const token = authorization.slice(7, authorization.length); //bearer XXXXXXX only token part to be valid(this was the error in dradtier for verify)
+    const token = authorization.slice(7, authorization.length); //bearer XXXXXXX
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
       if (err) {
-        res.status(401).sendMessage({ message: "Invalid Token" });
+        res.status(401).send({ message: "Invalid Token" });
       } else {
         req.user = decode;
         next();
       }
     });
   } else {
-    res.status(401).sendMessage({ message: "No Token" });
+    res.status(401).send({ message: "No Token" });
   }
 };

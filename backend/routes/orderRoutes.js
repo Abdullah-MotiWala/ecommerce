@@ -7,7 +7,7 @@ const router = Router();
 router.post(
   "/",
   authorizerMW,
-  expressAsyncHandler((req, res) => {
+  expressAsyncHandler(async (req, res) => {
     //   destructuring req body
     const {
       orderItems,
@@ -16,7 +16,7 @@ router.post(
       itemsPrice,
       shippingPrice,
       taxPrice,
-      totalPrice,
+      totalPrice
     } = req.body;
 
     const order = new Order({
@@ -29,7 +29,7 @@ router.post(
       totalPrice,
       user: req.user._id
     });
-    const createdOrder = order.save();
+    const createdOrder = await order.save();
     res
       .status(201)
       .send({ message: "Order Created Successfully", order: createdOrder });

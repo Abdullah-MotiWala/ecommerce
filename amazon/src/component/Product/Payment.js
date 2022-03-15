@@ -24,7 +24,6 @@ export default function Payment() {
   // useEffect(() => {
 
   // }, [navigate, shippingAddress]);
-  console.log(shippingAddress);
   // useEffect(() => {
   //   if (!shippingAddress) {
   //     navigate("/shipping");

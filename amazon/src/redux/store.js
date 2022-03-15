@@ -10,6 +10,7 @@ import {
   userAuthReducer
   // userSignInReducer
 } from "./reducers/authReducers.js";
+import { orderReducers } from "./reducers/orderReducers.js";
 
 const initialState = {
   userAuth: {
@@ -28,7 +29,8 @@ const reducer = combineReducers({
   productList: productListReducers,
   productDetails: productDetailsReducer,
   addToCart: cartReducer,
-  userAuth: userAuthReducer
+  userAuth: userAuthReducer,
+  orderCreate: orderReducers
   // userSignIn: userSignInReducer,
   // userSignUp: signUpReducers
 });
