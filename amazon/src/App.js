@@ -9,6 +9,7 @@ import SignUp from "./component/Auth/SignUp";
 import Shipping from "./component/Product/Shipping";
 import Payment from "./component/Product/Payment";
 import PlaceOrder from "./component/Product/PlaceOrder";
+import OrderScreen from "./component/Product/OrderScreen";
 
 function App() {
   return (
@@ -27,9 +28,7 @@ function App() {
             <Route path="/shipping" element={<Shipping />}></Route>
             <Route path="/payment" element={<Payment />}></Route>
             <Route path="/placeorder" element={<PlaceOrder />}></Route>
-
-
-
+            <Route path="/order/:id" element={<OrderScreen />}></Route>
           </Routes>
         </BrowserRouter>
       </>
