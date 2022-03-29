@@ -1,8 +1,8 @@
-import express, { Router } from "express";
+import { Router } from "express";
 import expressAsyncHandle from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
-const app = express();
+// const app = express();
 const router = Router();
 
 //#ROUTE:1 adding and sending all products & Opt:get

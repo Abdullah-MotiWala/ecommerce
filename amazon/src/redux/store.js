@@ -11,6 +11,7 @@ import {
   // userSignInReducer
 } from "./reducers/authReducers.js";
 import {
+  orderDeliverReducer,
   orderDetailsReducer,
   orderPayReducers,
   orderReducers
@@ -36,7 +37,8 @@ const reducer = combineReducers({
   userAuth: userAuthReducer,
   orderCreate: orderReducers,
   orderDetails: orderDetailsReducer,
-  orderPay: orderPayReducers
+  orderPay: orderPayReducers,
+  orderDeliver: orderDeliverReducer
   // userSignIn: userSignInReducer,
   // userSignUp: signUpReducers
 });

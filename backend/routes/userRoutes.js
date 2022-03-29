@@ -21,8 +21,9 @@ router.get(
 router.post(
   "/signin",
   expressAsyncHandle(async (req, res) => {
+    const { email, password } = req.body;
     const user = await User.findOne({ email: req.body.email });
-    if (user) {
+    if (user.email === email && user.password === password) {
       res.send({
         token: generateToken(user)
       });

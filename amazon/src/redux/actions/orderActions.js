@@ -14,7 +14,9 @@ import {
   ORDER_DETAIL_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
-  ORDER_PAY_SUCESS
+  ORDER_PAY_SUCCESS,
+  ORDER_SUMMARY_REQUEST,
+  ORDER_SUMMARY_SUCCESS
 } from "../constant/orderConstant";
 
 export const createdOrder = (order) => async (dispatch, getState) => {
@@ -55,17 +57,21 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
 
 export const payOrder =
   (order, paymentResult) => async (dispatch, getState) => {
-    dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
+    dispatch({ type: ORDER_PAY_REQUEST });
     const {
       userAuth: { userInfo }
     } = getState();
     try {
-      const { data } = Axios.put(`api/orders/:order_id/pay`, paymentResult, {
-        headers: {
-          authorization: `Bearer ${userInfo.token}`
+      const { data } = Axios.put(
+        `/api/orders/${order._id}/pay`,
+        paymentResult,
+        {
+          headers: {
+            authorization: `Bearer ${userInfo.token}`
+          }
         }
-      });
-      dispatch({ type: ORDER_PAY_SUCESS, payload: data });
+      );
+      dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
     } catch (err) {
       const message = err.message;
       dispatch({ type: ORDER_PAY_FAIL, payload: message });
@@ -75,7 +81,7 @@ export const payOrder =
 export const deliverOrder = (orderId) => async (dispatch, getState) => {
   dispatch({ type: ORDER_DELIVER_REQUEST, payload: orderId });
   const {
-    userSignin: { userInfo }
+    userAuth: { userInfo }
   } = getState();
   try {
     const { data } = Axios.put(
@@ -92,5 +98,26 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({ type: ORDER_DELIVER_FAIL, payload: message });
+  }
+};
+
+export const summaryOrder = () => async (dispatch, getState) => {
+  dispatch({ type: ORDER_SUMMARY_REQUEST });
+  const {
+    userSignin: { userInfo }
+  } = getState();
+  try {
+    const { data } = await Axios.get("/api/orders/summary", {
+      headers: { Authorization: `Bearer ${userInfo.token}` }
+    });
+    dispatch({ type: ORDER_SUMMARY_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ORDER_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    });
   }
 };

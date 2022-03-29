@@ -16,6 +16,10 @@ export default function PlaceOrder() {
     (state) => state.orderCreate
   );
 
+  // if payment not found redirecting again to payment page
+  if (!cart.paymentMethod) {
+    navigate("/payment");
+  }
   // if order dispatched successfully it will be redirected to order completion page
   useEffect(() => {
     if (success) {

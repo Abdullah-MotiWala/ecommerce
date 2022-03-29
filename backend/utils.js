@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-//middle ware for authentication
+//token generating function
 export const generateToken = (user) => {
   return jwt.sign(
     {
@@ -29,5 +29,15 @@ export const authorizerMW = (req, res, next) => {
     });
   } else {
     res.status(401).send({ message: "No Token" });
+  }
+};
+
+
+// checking if user is admin
+export const isAdmin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401).send({ message: 'Invalid Admin Token' });
   }
 };

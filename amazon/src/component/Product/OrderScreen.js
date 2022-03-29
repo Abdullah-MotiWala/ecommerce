@@ -1,15 +1,19 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deliverOrder, detailsOrder, payOrder } from "../actions/orderActions";
+import {
+  deliverOrder,
+  detailsOrder,
+  payOrder
+} from "../../redux/actions/orderActions";
 import { Spin } from "antd";
 import { Alert } from "antd";
 import {
   ORDER_DELIVER_RESET,
   ORDER_PAY_RESET
-} from "../constants/orderConstants";
+} from "../../redux/constant/orderConstant";
 import { Button } from "antd";
 
 export default function OrderScreen(props) {
@@ -18,14 +22,15 @@ export default function OrderScreen(props) {
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
-  const userSignin = useSelector((state) => state.userSignin);
+  const userSignin = useSelector((state) => state.userAuth);
   const { userInfo } = userSignin;
+  console.log(orderDetails);
 
   const orderPay = useSelector((state) => state.orderPay);
   const {
     loading: loadingPay,
-    error: errorPay
-    // success: successPay
+    error: errorPay,
+    success: successPay
   } = orderPay;
   const orderDeliver = useSelector((state) => state.orderDeliver);
 
@@ -40,14 +45,23 @@ export default function OrderScreen(props) {
     dispatch({ type: ORDER_PAY_RESET });
     dispatch({ type: ORDER_DELIVER_RESET });
     dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId, order]);
+  }, [dispatch, orderId]);
 
-  const successPaymentHandler = (paymentResult) => {
-    dispatch(payOrder(order, paymentResult));
+  const successPaymentHandler = () => {
+    dispatch(payOrder(order));
   };
   const deliverHandler = () => {
     dispatch(deliverOrder(order._id));
   };
+
+  useEffect(() => {
+    if (!order || successPay || (order && order._id !== orderId)) {
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
+      dispatch(detailsOrder(orderId));
+    }
+  }, [dispatch, orderId, successPay, order]);
+
   return loading ? (
     <Spin />
   ) : error ? (
@@ -168,31 +182,17 @@ export default function OrderScreen(props) {
                       />
                     )}
                     {loadingPay && <Spin />}
-                    <Button onClick={""}>Pay The Bill</Button>
+                    <PayPalButton
+                      type="button"
+                      className="primary block"
+                      onClick={successPaymentHandler}
+                    >
+                      Pay The Bill
+                    </PayPalButton>
                   </>
                 </li>
               )}
-              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-                <li>
-                  {loadingDeliver && <Spin />}
-                  {errorDeliver && (
-                    <Alert
-                      message="Error"
-                      description={error}
-                      type="error"
-                      showIcon
-                    />
-                  )}
-                  <PayPalButton
-                    type="button"
-                    className="primary block"
-                    onClick={successPaymentHandler}
-                  >
-                    Deliver Order
-                  </PayPalButton>
-                </li>
-              )}
-              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+              {userInfo && order.isPaid && !order.isDelivered && (
                 <li>
                   {loadingDeliver && <Spin />}
                   {errorDeliver && (
@@ -205,6 +205,15 @@ export default function OrderScreen(props) {
                   >
                     Deliver Order
                   </button>
+                </li>
+              )}
+              {order.isPaid && order.isDelivered && (
+                <li>
+                  <p>
+                    You have successfully get your product, please provide
+                    feedback on our official page
+                  </p>
+                  <a href="/"> Go back to shop</a>
                 </li>
               )}
             </ul>
